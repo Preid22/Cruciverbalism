@@ -1,4 +1,4 @@
-import { createRoot } from "react-dom/client";
+import { createRoot } from "react-dom/client";                      // Imports the createRoot method
 import React from "react";
 import "./main.css";
 import {
@@ -31,9 +31,10 @@ const router = createBrowserRouter([
 
 const container = document.getElementById("app");
 const root = createRoot(container);
-root.render(<React.StrictMode>
-    <RouterProvider router={router} />
-  </React.StrictMode>
+root.render(
+    <React.StrictMode>
+        <RouterProvider router={router} />
+    </React.StrictMode>
 );
 
 

@@ -5,8 +5,8 @@ import "./Game.css";
 
 export default function Game() {
     const [board, setBoard] = useState({});
-    useState(() => {
-        const date = "1979-10-10";
+    useState(() => {                                         //should this be setBoard() instead of useState()?
+        const date = "1979-10-10";                           // Let user input/choose date
         fetch(`/creategame?date=${date}`).then((data) => {
             if (data.status === 200) {
                 data.json().then((data) => {
