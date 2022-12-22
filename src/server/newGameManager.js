@@ -5,6 +5,9 @@ function getCrosswordData(date) {                                    //Call this
     return require(`./crosswords/${year}/${month}/${day}.json`);     // ?? QUESTION: what is the require() function doing here?
                                                                      // My understanding is that it is reading the JSON file and outputting
                                                                      // the data as an object? A little vague on how this occurs need to clarify
+
+
+                                                                     // Make a mapping function to parse the data into a usable format
 }
 
 exports.getCrosswordData = getCrosswordData;                        // Now by exporting this function we are effectively

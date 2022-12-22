@@ -29,6 +29,9 @@ app.get("/creategame", (req, res) => {                      // app.get specifies
     const { date } = req.query;                             // is a GET request on that path, the func takes req and res as args.
                                                             // ie. the function is a route handler for GET requests to the given URL
 
+                                                            // This creates an ENDPOINT for the client to get the crossword data
+                                                            // the URL would be something like http://localhost:3000/creategame?date=yyyy-mm-dd
+
                                                             // req.query is an object populated by request query strings found in
                                                             // the URL, they are found after the '?' in any URL (mults. seperated by '&')
                                                             // Think about dates in URL
