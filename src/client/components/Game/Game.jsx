@@ -22,6 +22,13 @@ export default function Game() {
     });
   }, []);
 
+  useState(() => {
+    console.log(board)
+  }, [board]);                                          // Check out this dependency array, empty vs populated on re-render
+                                                        // Data change/re-render relationship
+                                                        // User input and interaction w state and state updates
+
+
   return (
     <div className="gamepage">
       <h2>The Fake New York Times Crossword</h2>
@@ -33,6 +40,7 @@ export default function Game() {
         <div>
           <h2></h2>
         </div>
+        {board.letter && <Gameboard board={board} />}
         <Grid />
         <ol className="clues">
           <li>Clue</li>

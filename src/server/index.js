@@ -22,7 +22,7 @@ const { getCrosswordData } = require("./newGameManager");  // A little confused 
                                                            // This gives us access to an object containing the crossword data
 
 app.use(express.static(DIST_DIR));                          //Middleware funcs - FIGURE THESE OUT
-
+                                                            // Inject a function before express handles endpoint requests
 app.use(express.static("public"));
 
 app.get("/creategame", (req, res) => {                      // app.get specifies a callback func that will be invoked whenever there
