@@ -46,3 +46,23 @@ seemed to be able to iterate through just fine but wasn't able to update the val
 ** PUT CODE HERE FOR REF **
 
     - Next step: try applying .map() or .forEach() methods, think about how to do this
+
+
+12/29/2022
+----------
+
+🚨 Foothold alert 🚨
+
+* Update: was able to successfuly iterate thru 'newData' object and pull the corresponding vals
+from the NYT 'data' object  
+
+function massage(input, output) {
+  for (let key in output) {
+    if (Object.keys(data).includes(key)) {
+      output[key] = input[key];
+    } // ternary
+  }
+  return output;    <------ Outputs newData with updated vals
+}
+
+console.log(massage(data, newData)); 
