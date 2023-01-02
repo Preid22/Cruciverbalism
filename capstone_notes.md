@@ -66,3 +66,16 @@ function massage(input, output) {
 }
 
 console.log(massage(data, newData)); 
+
+
+1/1/2023
+--------
+
+* Coming back after a few days unplugged, getting my bearings back. Left feeling pretty good about
+having been able to handle and modify the CW data objects as a stopping point last week. Small piece
+of the big picture though, maintain perspective.
+
+- Now the challenge is to get ahold of my data and use it to render relevant game data
+  - useState, dependancy array, figure out what the deal is with renders and re-renders
+  - Properly handle the data
+  - Render that data!!
