@@ -79,3 +79,43 @@ of the big picture though, maintain perspective.
   - useState, dependancy array, figure out what the deal is with renders and re-renders
   - Properly handle the data
   - Render that data!!
+
+1/2/2023
+--------
+
+* Main goal tonight is to get data on the board. Thinking to try and get the author name or something rendered.
+Left off with some doubt that the data was making it into the state object or if so what the format to access it 
+would be. Goals tonight are to get a better sense of what the data looks like and also to be able to access
+it through hooks.
+
+* Trouble spots: 
+  - spinning my wheels on useState & useEffect and how they work with rendering data. Need to tighten up on this.
+  - I think I should be able to access board (the state variable) using dot notation to access CW data but am
+  unable to do so
+  - When this URL is typed in - ( http://localhost:3000/creategame?date=1979-10-10 ), the page displays the raw data object
+
+- Relevant info:
+    - the .json() method does not produce JSON data, rather it takes in JSON, parses it, and produces a JS object
+    - Dependency array: Certain React hooks accept two args. The first is the callback function and the second
+  is the DEPENDENCY ARRAY. The dependency array tells the hook to trigger anytime the dependency array changes
+*EXAMPLE*:
+
+     useEffect(() => {
+        console.log('Counter has value', counter);
+     }, [counter]);
+
+     ^^ Here, [counter] is the dependency array and the callback function will be run anytime that the 'counter'
+     variable changes
+ 
+   - require(): Require is a built-in function to include external modules that exist in seperate files. Require reads 
+   a JS file, executes it, and proceeds to return the export object
+
+* Debrief: 
+  - Was unable to render anything in the app but feels like I got a couple steps closer. Was able to confirm the data handling
+function worked correctly (though still not sure what exactly is needed here in terms of how to massage data). Able to do that 
+by navigating directly to that endpoint but that just displays the raw object.
+ - Still struggling some with the hooks, seems like am possibly stuck on the same issue Shane had earlier re. useState/useEffect
+ - Basically the problem seems to be that once the data is fetched, I can access it within that function (console.log(data.data.author))
+  but after it has been assigned to the 'board' variable I am unable to access it (board.data.author doesn't work). Will keep digging on this.
+
+
