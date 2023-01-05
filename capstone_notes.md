@@ -110,7 +110,12 @@ console.log(massage(data, newData));
 * Basically the problem seems to be that once the data is fetched, I can access it within that function (console.log(data.data.author))
   but after it has been assigned to the 'board' variable I am unable to access it (board.data.author doesn't work). Will keep digging on this.
 
-🚨 Foothold 🚨 1/3/2023
+## 🚨 Foothold 🚨 1/3/2023
 
 - Now understand that bc the state variable has an initial value of an empty object. The useEffect hook hasn't fired to update the board val
   until after the initial render, so the useEffect must be triggered (conditional in the return? ln. 36 Game.jsx)
+
+## 1/4/2023
+
+- Not as strong of a foothold as I had hoped. Still can't get data to render successfully, not sure what am missing but overall understanding of the render cycle
+  feels flimsy. Look into this. Find out why the && short circuit isn't working...component issue? Missing something else?
