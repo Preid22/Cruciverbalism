@@ -1,6 +1,6 @@
 function getCrosswordData(date) {
-  //Call this function to get puzzle data
-  const [year, month, day] = date.split("-"); //Creates variables for year, month and day
+  // Call this function to get puzzle data
+  const [year, month, day] = date.split("-"); // Creates variables for year, month and day
   // by destructuring the passed in date which is split
   // into seperate array elements by the '-' character
   const puzzle = require(`./crosswords/${year}/${month}/${day}.json`); // ?? QUESTION: what is the require() function doing here?
@@ -11,9 +11,26 @@ function getCrosswordData(date) {
   // Make a mapping function to parse the data into a usable format
 }
 
-function puzzleMap(puzzle) {
-  console.log(puzzle);
-  return puzzle;
+function puzzleMap(input) {
+  let trimData = {
+    answers: undefined,
+    author: undefined,
+    clues: undefined,
+    copyright: undefined,
+    date: undefined,
+    editor: undefined,
+    grid: undefined,
+    gridnums: undefined,
+    publisher: undefined,
+    size: undefined,
+    title: undefined,
+  };
+  for (let key in trimData) {
+    if (Object.keys(input).includes(key)) {
+      trimData[key] = input[key];
+    }
+  }
+  return trimData;
 }
 
 exports.getCrosswordData = getCrosswordData; // Now by exporting this function we are effectively

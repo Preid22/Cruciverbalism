@@ -1,47 +1,50 @@
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import Grid from "../Grid/Grid";
+import Authorbox from "../Authorbox/Authorbox";
 import "./Game.css";
 
 export default function Game() {
-  const [board, setBoard] = useState({}); // Need to review how to take the data from this state var
-  // and pass it to components
-  useState(() => {
-    //should this be setBoard() instead of useState()?
-    const date = "1979-10-10"; // Let user input/choose date, need to figure out how to do this
-    // route based? ie. dynamically change the URL w/
-    //user input and
-    // have the server respond with the correct board?
+  const [board, setBoard] = useState({});
+
+  useEffect(() => {
+    const date = "1979-10-10";
     fetch(`/creategame?date=${date}`).then((data) => {
       if (data.status === 200) {
         data.json().then((data) => {
-          console.log(data);
           setBoard(data);
+          console.log(data.data.author);
         });
       }
     });
   }, []);
 
-  useState(() => {
-    console.log(board)
-  }, [board]);                                          // Check out this dependency array, empty vs populated on re-render
-                                                        // Data change/re-render relationship
-                                                        // User input and interaction w state and state updates
+  // useEffect(() => {
+  //   console.log(board.data.author);
+  // }, [board]); // Check out this dependency array, empty vs populated on re-render
+  //Data change/re-render relationship
+  //User input and interaction w state and state updates
 
-
+  //if board is not empty ->
+  // Hitting a wall here...my understanding is that the state variable is initialized as an empty object,
+  // the useEffect data fetch does not show up until the next render (?), so trying to access that
+  // data immediatly in the returned JSX comes back undefined. Using the short circuited
+  // && conditional I think should allow access but it does not.
   return (
     <div className="gamepage">
       <h2>The Fake New York Times Crossword</h2>
       <div className="link">
+        <>
+          {board && <Authorbox boardData={board} />}
+          test
+        </>
         <Link to="../">Home</Link>
         <Link to="../config">Settings</Link>
       </div>
       <div className="game">
         <div>
-          <h2></h2>
+          <Grid />
         </div>
-        {board.letter && <Gameboard board={board} />}
-        <Grid />
         <ol className="clues">
           <li>Clue</li>
           <li>Clue</li>
