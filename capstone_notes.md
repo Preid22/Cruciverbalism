@@ -119,3 +119,9 @@ console.log(massage(data, newData));
 
 - Not as strong of a foothold as I had hoped. Still can't get data to render successfully, not sure what am missing but overall understanding of the render cycle
   feels flimsy. Look into this. Find out why the && short circuit isn't working...component issue? Missing something else?
+
+## 1/5/2023
+
+😖 Roadblock 😖
+
+- Still fighting through the rendering...Realized that the empty object would return truthy so that won't work for a short circuit. Spent a bit of time trying various different ways to get the short circuit to happen (trying to access props that didn't exist/were undefined), Object.keys(board).length > 0, should have stopped sooner but eventually looked more into objects and it turns out that except in some exotic cases objects will ALWAYS return as a truthy val....Frustrated I didn't look into this sooner as it would have saved some needless headscratching. So this means I will need to re-handle my data as an array so I can get the falsey return.
