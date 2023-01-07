@@ -12,8 +12,13 @@ Complete a capstone project to demonstrate capability and understanding of basic
 and backend systems and technology
 
 - PROJECT DETAILS: Will be building a crossword app using the NYT online crossword
-  (https://www.nytimes.com/crosswords) as a template. - The app will allow for single player play as well as multiplayer which will
-  have both competetive and cooperative modes. - Puzzles will be generated using a DB of json files containing historical NYT puzzle data - Player profiles may be created, saved, and updated with relevant data - ?? Games will be played 'live' or on a turn based system - Game components (board/grid, hints) will be generated using the historical data and can be
+  (https://www.nytimes.com/crosswords) as a template.
+- The app will allow for single player
+  play as well as multiplayer which will have both competetive and cooperative modes.
+- Puzzles will be generated using a DB of json files containing historical NYT puzzle data
+- Player profiles may be created, saved, and updated with relevant data
+- ?? Games will be played 'live' or on a turn based system
+- Game components (board/grid, hints) will be generated using the historical data and can be
   user selected by date
   (?? puzzle search function ??)
 
@@ -30,13 +35,11 @@ and backend systems and technology
   about the basics of accessing and updating/modifying properties but am struggling to implement a function
   that cleans up the json puzzle data.
 
-      - Current approach: create an Object with the keys I want to use (clues, author, gridnums, etc), then
-
+- Current approach: create an Object with the keys I want to use (clues, author, gridnums, etc), then
   compare that to the historical data json file and if the keys from the new obj are found, update the vals
   on the 'new' object with the vals from the historical data.
 
-      - Attempted solutions: Tried a couple different variations on loops, both for in and for of. Was unsuccesful,
-
+- Attempted solutions: Tried a couple different variations on loops, both for in and for of. Was unsuccesful,
   seemed to be able to iterate through just fine but wasn't able to update the values like I wanted to.
 
 \*\* EXPAND ON ATTEMPTED SOLUTIONS
@@ -87,7 +90,10 @@ console.log(massage(data, newData));
     unable to do so
   - When this URL is typed in - ( http://localhost:3000/creategame?date=1979-10-10 ), the page displays the raw data object
 
-* Relevant info: - the .json() method does not produce JSON data, rather it takes in JSON, parses it, and produces a JS object - Dependency array: Certain React hooks accept two args. The first is the callback function and the second
+* Relevant info:
+
+- the .json() method does not produce JSON data, rather it takes in JSON, parses it, and produces a JS object
+- Dependency array: Certain React hooks accept two args. The first is the callback function and the second
   is the DEPENDENCY ARRAY. The dependency array tells the hook to trigger anytime the dependency array changes
   _EXAMPLE_:
 
@@ -98,8 +104,8 @@ console.log(massage(data, newData));
        ^^ Here, [counter] is the dependency array and the callback function will be run anytime that the 'counter'
        variable changes
 
-  - require(): Require is a built-in function to include external modules that exist in seperate files. Require reads
-    a JS file, executes it, and proceeds to return the export object
+- require(): Require is a built-in function to include external modules that exist in seperate files. Require reads
+  a JS file, executes it, and proceeds to return the export object
 
 - Debrief:
   - Was unable to render anything in the app but feels like I got a couple steps closer. Was able to confirm the data handling
@@ -117,11 +123,55 @@ console.log(massage(data, newData));
 
 ## 1/4/2023
 
-- Not as strong of a foothold as I had hoped. Still can't get data to render successfully, not sure what am missing but overall understanding of the render cycle
-  feels flimsy. Look into this. Find out why the && short circuit isn't working...component issue? Missing something else?
+- Not as strong of a foothold as I had hoped. Still can't get data to render successfully, not sure what am missing but overall
+  understanding of the render cycle feels flimsy. Look into this. Find out why the && short circuit isn't working...component issue? Missing something else?
 
 ## 1/5/2023
 
 😖 Roadblock 😖
 
 - Still fighting through the rendering...Realized that the empty object would return truthy so that won't work for a short circuit. Spent a bit of time trying various different ways to get the short circuit to happen (trying to access props that didn't exist/were undefined), Object.keys(board).length > 0, should have stopped sooner but eventually looked more into objects and it turns out that except in some exotic cases objects will ALWAYS return as a truthy val....Frustrated I didn't look into this sooner as it would have saved some needless headscratching. So this means I will need to re-handle my data as an array so I can get the falsey return.
+
+## 1/6/2023
+
+👊 Minor Breakthrough 👊
+
+- Tried setting initial value of 'board' to an empty array, re-wrote the data handling function in newGameManager.
+  Still using a new object to collect the entries I want but instead of returning that object I return
+  Object.entries(puzzleData) to output an array of key/value pairs.
+- At this point I figured I should be able to access the array as usual, but I wasn't able to accomplish that.
+  I took at Shane's code to see how he handles it and noticed that he had a difference in the fetch request
+  for his useEffect call. Initially mine was written as such:
+
+                                      useEffect(() => {
+                                          const date = "1979-10-10";
+                                          fetch(`/creategame?date=${date}`).then((data) => {
+                                          if (data.status === 200) {
+          Problem is here =====>              data.json().then((data) => {
+                                              setBoard(data);
+                                              console.log(data);
+                                              });
+                                          }
+                                          });
+                                      }, []);
+
+- My reading of ln 149 is that 'data' gets resolved as an object, so in
+- .then setBoard would make board an object which is not what is needed
+- Shane wrote his equivalent line as: data.json().then(({data})=> {...})
+- Need to get clarification on this...is it destructuring? If so how is board
+  not being set as an object? Either way this did the trick, now useEffect is written:
+
+                                   useEffect(() => {
+                                    const date = "1979-10-10";
+                                    fetch(`/creategame?date=${date}`).then((data) => {
+                                    if (data.status === 200) {
+                    **                  data.json().then(({data}) => {                **
+                                        setBoard(data);
+                                        console.log(data);
+                                        });
+                                    }
+                                    });
+                                }, []);
+
+But need to nail down the mechanics
+|

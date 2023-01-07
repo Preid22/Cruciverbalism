@@ -11,9 +11,9 @@ export default function Game() {
     const date = "1979-10-10";
     fetch(`/creategame?date=${date}`).then((data) => {
       if (data.status === 200) {
-        data.json().then((data) => {
+        data.json().then(({ data }) => {
           setBoard(data);
-          console.log(data.data.copyright);
+          console.log(data);
         });
       }
     });
@@ -33,10 +33,7 @@ export default function Game() {
   return (
     <div className="gamepage">
       <h2>The Fake New York Times Crossword</h2>
-      <div>
-        {" "}
-        {Object.keys(board).length > 0 && <Authorbox boardData={board} />}
-      </div>
+      <div>{board[0] && <Authorbox boardData={board} />}</div>
       <div className="link">
         test1
         <Link to="../">Home</Link>
@@ -47,7 +44,7 @@ export default function Game() {
           <Grid />
         </div>
         <ol className="clues">
-          <li>Clue</li>
+          <li>{board[0] && board[2][1].across[0]}</li>
           <li>Clue</li>
           <li>Clue</li>
           <li>Clue</li>
