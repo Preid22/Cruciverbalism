@@ -1,7 +1,13 @@
 import React from "react";
 
-export default function Authorbox({ boardData }) {
-  return <div>{boardData[0][1].across[2]}</div>;
+export default function Authorbox({ author, editor, publisher }) {
+  return (
+    <div>
+      <span>{author}</span>
+      <span>{editor}</span>
+      <span>{publisher}</span>
+    </div>
+  );
 }
 
 // 0

@@ -1,30 +1,58 @@
 function getCrosswordData(date) {
   const [year, month, day] = date.split("-");
   const puzzle = require(`./crosswords/${year}/${month}/${day}.json`);
-  let puzzleData = puzzleMap(puzzle);
-  return Object.entries(puzzleData);
+  return puzzleMap(puzzle);
 }
 
-function puzzleMap(input) {
-  let trimData = {
-    answers: undefined,
-    author: undefined,
-    clues: undefined,
-    copyright: undefined,
-    date: undefined,
-    editor: undefined,
-    grid: undefined,
-    gridnums: undefined,
-    publisher: undefined,
-    size: undefined,
-    title: undefined,
-  };
-  for (let key in trimData) {
-    if (Object.keys(input).includes(key)) {
-      trimData[key] = input[key];
-    }
-  }
-  return trimData;
+function puzzleMap(puzzle) {
+  const p = {};
+  p.answers = puzzle.answers;
+  p.author = puzzle.author;
+  p.size = puzzle.size;
+  // p.clues = puzzle.clues;
+  p.acrossCluesArr = generateClueArray(puzzle.clues.across);
+  p.downCluesArr = generateClueArray(puzzle.clues.down);
+  p.acrossCluesMap = generateClueMap(puzzle.clues.across);
+  p.downCluesMap = generateClueMap(puzzle.clues.down);
+  p.copyright = puzzle.copyright;
+  p.date = puzzle.date;
+  p.editor = puzzle.editor;
+  p.cells = generateCells(puzzle.grid, puzzle.size.rows);
+  p.gridnums = puzzle.gridnums;
+  p.publisher = puzzle.publisher;
+  p.size = puzzle.size;
+  p.title = puzzle.title;
+  return p;
+}
+
+function generateClueArray(clues) {
+  return clues.map((clue) => {
+    const [num, clueString] = clue.split(".");
+    return {
+      num,
+      clueString,
+    };
+  });
+}
+
+function generateClueMap(clues) {
+  return clues.reduce((accum, cur) => {
+    const [num, clueString] = cur.split(".");
+    accum[num] = clueString;
+    return accum;
+  }, {});
+}
+
+function generateCells(letters, size) {
+  return letters.map((letter, index) => {
+    const row = Math.floor(index / size);
+    const column = index % size;
+    const letterOb = {};
+    letterOb.letter = letter;
+    letterOb.row = row;
+    letterOb.column = column;
+    return letterOb;
+  });
 }
 
 exports.getCrosswordData = getCrosswordData; // Now by exporting this function we are effectively

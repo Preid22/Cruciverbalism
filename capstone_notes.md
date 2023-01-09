@@ -175,3 +175,13 @@ console.log(massage(data, newData));
 
 But need to nail down the mechanics
 |
+
+## 1/8/2023
+
+- Going into the week with a clear goal in mind:
+
+  - cells highlight/change color on click/selection (even better if I can get
+    whole answer cell to highlight)
+  - Try and get some assoc. btwn answer cells and clues
+
+- Going back over the code added on Sat., figure out where the holes are and try and get some footholds.

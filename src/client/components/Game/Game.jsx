@@ -3,61 +3,71 @@ import { Link } from "react-router-dom";
 import Grid from "../Grid/Grid";
 import Authorbox from "../Authorbox/Authorbox";
 import "./Game.css";
+import Clues from "../Clues/Clues";
 
 export default function Game() {
-  const [board, setBoard] = useState([]);
+  const [board, setBoard] = useState({});
+  const [isLoading, setisLoading] = useState(true);
+  const [focusCell, setFocusCell] = useState({});
 
   useEffect(() => {
     const date = "1979-10-10";
     fetch(`/creategame?date=${date}`).then((data) => {
       if (data.status === 200) {
         data.json().then(({ data }) => {
-          setBoard(data);
           console.log(data);
+          setBoard(data);
+          setisLoading(false);
         });
       }
     });
   }, []);
 
-  // useEffect(() => {
-  //   console.log(board.data.author);
-  // }, [board]); // Check out this dependency array, empty vs populated on re-render
-  //Data change/re-render relationship
-  //User input and interaction w state and state updates
+  useEffect(() => {
+    console.log(
+      `The Cell in focus is now on row: ${focusCell.row} and column: ${focusCell.column}`
+    );
+  }, [focusCell]);
 
-  //if board is not empty ->
-  // Hitting a wall here...my understanding is that the state variable is initialized as an empty object,
-  // the useEffect data fetch does not show up until the next render (?), so trying to access that
-  // data immediatly in the returned JSX comes back undefined. Using the short circuited
-  // && conditional I think should allow access but it does not.
+  const handleSetFocus = (row, column) => {
+    const newFocus = {
+      row,
+      column,
+    };
+    setFocusCell(newFocus);
+  };
+
   return (
     <div className="gamepage">
       <h2>The Fake New York Times Crossword</h2>
-      <div>{board[0] && <Authorbox boardData={board} />}</div>
-      <div className="link">
-        test1
-        <Link to="../">Home</Link>
-        <Link to="../config">Settings</Link>
-      </div>
-      <div className="game">
-        <div>
-          <Grid />
-        </div>
-        <ol className="clues">
-          <li>{board[0] && board[2][1].across[0]}</li>
-          <li>Clue</li>
-          <li>Clue</li>
-          <li>Clue</li>
-          <li>Clue</li>
-        </ol>
-        <ol className="clues">
-          <li>Clue</li>
-          <li>Clue</li>
-          <li>Clue</li>
-          <li>Clue</li>
-          <li>Clue</li>
-        </ol>
-      </div>
+      {!isLoading && (
+        <>
+          <Authorbox
+            author={board.author}
+            editor={board.editor}
+            publisher={board.publisher}
+          />
+          <div className="link">
+            test1
+            <Link to="../">Home</Link>
+            <Link to="../config">Settings</Link>
+          </div>
+          <div
+            className="game"
+            onKeyDown={(event) => {
+              console.log(event);
+            }}
+            role="button"
+            tabIndex={0}
+          >
+            <div>
+              <Grid cells={board.cells} handleSetFocus={handleSetFocus} />
+            </div>
+            <Clues direction="Across" clues={board.acrossCluesArr} />
+            <Clues direction="Down" clues={board.downCluesArr} />
+          </div>
+        </>
+      )}
     </div>
   );
 }
