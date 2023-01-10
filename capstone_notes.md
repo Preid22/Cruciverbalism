@@ -185,3 +185,11 @@ But need to nail down the mechanics
   - Try and get some assoc. btwn answer cells and clues
 
 - Going back over the code added on Sat., figure out where the holes are and try and get some footholds.
+
+## 1/9/2023
+
+- Going to try and diagram/draw things out and try and get a better model of whats going on. Feels like a lot of time is spent switching btwn files/components/views and it all starts to blur together. Would be very happy to get some sort of interaction (highlight cells etc.)
+
+* Recap: Spent most time tonight going back over the syntax and components since that was feeling a little hairy. Wrote out some of the components and JSX on paper to get a better grip. Clarifying my mental model some, a fair bit of confusion stemmed from getting lost in the code and losing the thread of connection. Feeling better about my grasp overall.
+  Would have felt better getting a little more done re. interactivity but I do feel like I
+  have a better understanding, and was able to get the clues contained in a scrolling list. That was just a quick CSS fix but it's a nice boost all the same.

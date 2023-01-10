@@ -24,8 +24,13 @@
 }
 
 .clues {
-  background-color: grey;
-  padding: 40px;
+  display: flex;
+  flex-direction: column;
+  overflow: scroll;
+  background-color: whitesmoke;
+  padding: 20px;
   margin: 5px;
   height: 50%;
+  width: 25%;
+  border: 2px solid black;
 }

@@ -8,10 +8,7 @@ export default function Clues({ direction, clues }) {
       {clues.map((clue) => {
         return (
           <div className="clue">
-            <div className="clue-num">{clue.num}</div>
-            <>
-            :
-            </>
+            <div className="clue-num">{clue.num} -</div>
             <div className="clue-string">{clue.clueString}</div>
           </div>
         );

@@ -48,7 +48,6 @@ export default function Game() {
             publisher={board.publisher}
           />
           <div className="link">
-            test1
             <Link to="../">Home</Link>
             <Link to="../config">Settings</Link>
           </div>

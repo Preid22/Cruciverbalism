@@ -1,14 +1,8 @@
-.clues {
-  display: flex;
-  flex-direction: column;
- 
+.clue-num {
+  height: auto;
+  width: auto;
 }
 
-.clue {
-  display: flex;
-  flex-direction: row;
-  margin-left: 5px;
-}
-.clue-num {
-  margin-right: 2px;
+.clue-string {
+  size: auto;
 }
