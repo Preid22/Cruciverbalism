@@ -2,7 +2,12 @@ import React from "react";
 import Cell from "../Cell/Cell";
 import "./Grid.css";
 
-export default function Grid({ cells, handleSetFocus }) {
+export default function Grid({
+  cells,
+  handleSetFocus,
+  handleClick,
+  clickStatus,
+}) {
   return (
     <div className="grid">
       {" "}
@@ -11,11 +16,13 @@ export default function Grid({ cells, handleSetFocus }) {
         {cells.map((cell) => {
           return (
             <Cell
-              gridnum={cell.gridnum}
+              gridnum={cell.gridnums}
               letter={cell.letter}
               row={cell.row}
               column={cell.column}
               handleSetFocus={handleSetFocus}
+              handleClick={handleClick}
+              clickStatus={clickStatus}
             />
           );
         })}

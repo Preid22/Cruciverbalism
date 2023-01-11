@@ -9,6 +9,7 @@ export default function Game() {
   const [board, setBoard] = useState({});
   const [isLoading, setisLoading] = useState(true);
   const [focusCell, setFocusCell] = useState({});
+  const [clicked, setClicked] = useState(false);
 
   useEffect(() => {
     const date = "1979-10-10";
@@ -36,6 +37,7 @@ export default function Game() {
     };
     setFocusCell(newFocus);
   };
+  const handleClick = () => setClicked(!clicked);
 
   return (
     <div className="gamepage">
@@ -60,7 +62,12 @@ export default function Game() {
             tabIndex={0}
           >
             <div>
-              <Grid cells={board.cells} handleSetFocus={handleSetFocus} />
+              <Grid
+                cells={board.cells}
+                handleSetFocus={handleSetFocus}
+                handleClick={handleClick}
+                clickStatus={clicked}
+              />
             </div>
             <Clues direction="Across" clues={board.acrossCluesArr} />
             <Clues direction="Down" clues={board.downCluesArr} />

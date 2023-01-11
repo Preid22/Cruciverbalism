@@ -193,3 +193,12 @@ But need to nail down the mechanics
 * Recap: Spent most time tonight going back over the syntax and components since that was feeling a little hairy. Wrote out some of the components and JSX on paper to get a better grip. Clarifying my mental model some, a fair bit of confusion stemmed from getting lost in the code and losing the thread of connection. Feeling better about my grasp overall.
   Would have felt better getting a little more done re. interactivity but I do feel like I
   have a better understanding, and was able to get the clues contained in a scrolling list. That was just a quick CSS fix but it's a nice boost all the same.
+
+## 1/10/2023
+
+- Getting a little frustrated with lack of headway.
+- Taking a long time to parse through everything and by the time it starts to click a little there isn't a lot of time to do much with it.
+- Unsure if this is a symptom of inexperience overall or if there are some specific gaps that are.
+- Lots of time still wasted pondering, finding myself vague and unsure about how to proceed or what the next step should be
+
+-Was able to get background color of the grid to change with onClick but not the individual cells

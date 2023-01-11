@@ -1,6 +1,14 @@
 import React from "react";
 
-export default function Cell({ gridnum, letter, row, column, handleSetFocus }) {
+export default function Cell({
+  gridnum,
+  letter,
+  row,
+  column,
+  handleSetFocus,
+  handleClick,
+  clickStatus,
+}) {
   const cellPadding = 0;
   const cellInner = 10;
   const cellSize = 10;
@@ -10,13 +18,15 @@ export default function Cell({ gridnum, letter, row, column, handleSetFocus }) {
   const showLetter = letter !== ".";
 
   const fill = () => {
-    if (letter === ".") {
+   if (letter === ".") {
       return "black";
     } else {
       return "white";
     }
   };
 
+  // in return statement the <g> element is a container
+  // used to group other SVG elements (<rect>,<text>x2)
   return (
     <g
       onClick={() => {
@@ -26,25 +36,22 @@ export default function Cell({ gridnum, letter, row, column, handleSetFocus }) {
       className="clue-cell"
     >
       <rect
+        onClick={handleClick}
         x={x + cellPadding}
         y={y + cellPadding}
         width={cellInner}
         height={cellInner}
-        fill={fill()}
-        stroke="black"
-        strokeWidth={cellSize / 50}
+        fill={clickStatus ? "blue" : fill()}
+        stroke={clickStatus ? "black" : "green"}
+        strokeWidth={cellSize / 20}
       />
-      {gridnum && (
-        <text
-          x={x + cellPadding * 4 + 0.5}
-          y={y + cellPadding * 4 + 0.5}
-          textAnchor="start"
-          dominantBaseline="hanging"
-          style={{ fontSize: "13%", fill: "blue" }}
-        >
-          {gridnum}
-        </text>
-      )}
+      <text
+        x={x + cellPadding * 4 + 0.5}
+        y={y + cellPadding * 4 + 0.5}
+        textAnchor="start"
+        dominantBaseline="hanging"
+        style={{ fontSize: "13%", fill: "blue" }}
+      ></text>
       {showLetter && (
         <text
           x={x - cellHalf + 5}

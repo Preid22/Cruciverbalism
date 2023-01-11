@@ -1,7 +1,6 @@
-const { response } = require("express"); // The require() function reads a JS file, executes it,
-const express = require("express"); // and returns the export object. In lines 2 & 3 we have imported
-const app = express(); // the Express module (from express.js in node_modules?)
-// and created an Express app, assigned to the app variable
+const { response } = require("express");
+const express = require("express"); 
+const app = express(); 
 
 const path = require("path"); // This brings in the path module, which provides utilities
 // for interacting with and manipulating file and directory paths

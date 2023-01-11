@@ -17,7 +17,7 @@ function puzzleMap(puzzle) {
   p.copyright = puzzle.copyright;
   p.date = puzzle.date;
   p.editor = puzzle.editor;
-  p.cells = generateCells(puzzle.grid, puzzle.size.rows);
+  p.cells = generateCells(puzzle.grid, puzzle.size.rows);  // has letterOb (.letter, .row, .column)
   p.gridnums = puzzle.gridnums;
   p.publisher = puzzle.publisher;
   p.size = puzzle.size;
@@ -45,7 +45,7 @@ function generateClueMap(clues) {
 
 function generateCells(letters, size) {
   return letters.map((letter, index) => {
-    const row = Math.floor(index / size);
+    const row = Math.floor(index / size); //on first row index is < size, > on subsequent rows so dividing gets us row value
     const column = index % size;
     const letterOb = {};
     letterOb.letter = letter;
