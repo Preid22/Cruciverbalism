@@ -42,7 +42,7 @@ function generateClueMap(clues) {
     return accum;
   }, {});
 }
-
+//p.cells = generateCells(puzzle.grid, puzzle.size.rows);  
 function generateCells(letters, size) {
   return letters.map((letter, index) => {
     const row = Math.floor(index / size); //on first row index is < size, > on subsequent rows so dividing gets us row value

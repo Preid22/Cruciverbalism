@@ -12,7 +12,7 @@ export default function Game() {
   const [clicked, setClicked] = useState(false);
 
   useEffect(() => {
-    const date = "1979-10-10";
+    const date = "1977-02-02";
     fetch(`/creategame?date=${date}`).then((data) => {
       if (data.status === 200) {
         data.json().then(({ data }) => {
@@ -37,6 +37,7 @@ export default function Game() {
     };
     setFocusCell(newFocus);
   };
+
   const handleClick = () => setClicked(!clicked);
 
   return (
@@ -63,6 +64,7 @@ export default function Game() {
           >
             <div>
               <Grid
+                focusCell={focusCell}
                 cells={board.cells}
                 handleSetFocus={handleSetFocus}
                 handleClick={handleClick}

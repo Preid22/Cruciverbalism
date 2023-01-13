@@ -1,6 +1,7 @@
 import React from "react";
 
 export default function Cell({
+  focusCell,
   gridnum,
   letter,
   row,
@@ -18,8 +19,19 @@ export default function Cell({
   const showLetter = letter !== ".";
 
   const fill = () => {
-   if (letter === ".") {
+    if (letter === ".") {
       return "black";
+    } else {
+      return "white";
+    }
+  };
+
+  const focusFill = () => {
+    if (letter === ".") {
+      return "black";
+    }
+    if (row === focusCell.row && column === focusCell.column) {
+      return "yellow";
     } else {
       return "white";
     }
@@ -41,8 +53,8 @@ export default function Cell({
         y={y + cellPadding}
         width={cellInner}
         height={cellInner}
-        fill={clickStatus ? "blue" : fill()}
-        stroke={clickStatus ? "black" : "green"}
+        fill={focusFill()}
+        stroke="black"
         strokeWidth={cellSize / 20}
       />
       <text

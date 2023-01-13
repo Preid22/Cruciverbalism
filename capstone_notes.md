@@ -202,3 +202,18 @@ But need to nail down the mechanics
 - Lots of time still wasted pondering, finding myself vague and unsure about how to proceed or what the next step should be
 
 -Was able to get background color of the grid to change with onClick but not the individual cells
+
+## 1/11/2023
+
+- Identify the block: thinking a lot of the issue comes down to focus, and being able to apply what I know.
+  Realized in talking to Eugene that fundamentally my understanding is sound, just the basics for now but I
+  do feel confident that I undertstand what React is doing as far as components and state and props and how all that works
+  but for some reason it still just doesn't click and it feels like a big part of that is due to getting easily distracted by
+  all the other moving parts while trying to hone in on one particular thing. I believe this may be overcome simply by getting
+  more fingers on keys.
+- Need to establish CLEAR GOALS and steps to attain them. Vague goals encourage distraction and getting easily sidetracked.
+
+## 1/12/2023
+
+- Refocusing, attempting to exercise patience and take a much more methodical approach. Rubber duck the whole thing and
+  take extensive notes. Only begin to try and add functionality after I know exactly what is happening and why.

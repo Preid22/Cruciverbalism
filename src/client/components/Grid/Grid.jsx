@@ -7,6 +7,7 @@ export default function Grid({
   handleSetFocus,
   handleClick,
   clickStatus,
+  focusCell
 }) {
   return (
     <div className="grid">
@@ -14,8 +15,10 @@ export default function Grid({
       <svg viewBox="0 0 150 150">
         <rect x={0} y={0} width={100} height={100} />
         {cells.map((cell) => {
-          return (
+          return ( // mapping over cells, return a cell
+                   // component w props from cells data
             <Cell
+             focusCell={focusCell}
               gridnum={cell.gridnums}
               letter={cell.letter}
               row={cell.row}
