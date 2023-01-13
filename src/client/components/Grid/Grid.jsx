@@ -3,7 +3,8 @@ import Cell from "../Cell/Cell";
 import "./Grid.css";
 
 export default function Grid({
-  cells,
+  cells, //{letter:'', row:0, column:0}
+  gridnums,
   handleSetFocus,
   handleClick,
   clickStatus,
@@ -16,10 +17,10 @@ export default function Grid({
         <rect x={0} y={0} width={100} height={100} />
         {cells.map((cell) => {
           return ( // mapping over cells, return a cell
-                   // component w props from cells data
+                   // component for each w props from cells data
             <Cell
              focusCell={focusCell}
-              gridnum={cell.gridnums}
+              gridnums={gridnums}//does nothing, no access??
               letter={cell.letter}
               row={cell.row}
               column={cell.column}

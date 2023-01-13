@@ -2,13 +2,13 @@ import React from "react";
 
 export default function Cell({
   focusCell,
-  gridnum,
+  gridnums,
   letter,
   row,
   column,
   handleSetFocus,
-  handleClick,
-  clickStatus,
+  handleClick, //get rid of this
+  clickStatus, //this too
 }) {
   const cellPadding = 0;
   const cellInner = 10;
@@ -48,7 +48,6 @@ export default function Cell({
       className="clue-cell"
     >
       <rect
-        onClick={handleClick}
         x={x + cellPadding}
         y={y + cellPadding}
         width={cellInner}
@@ -63,7 +62,9 @@ export default function Cell({
         textAnchor="start"
         dominantBaseline="hanging"
         style={{ fontSize: "13%", fill: "blue" }}
-      ></text>
+      >
+        {gridnums[3]}
+      </text>
       {showLetter && (
         <text
           x={x - cellHalf + 5}
@@ -73,7 +74,7 @@ export default function Cell({
           style={{
             fontSize: "25%",
           }}
-          fill="red"
+          fill="black"
         >
           {letter}
         </text>

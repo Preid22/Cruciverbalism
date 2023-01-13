@@ -65,7 +65,8 @@ export default function Game() {
             <div>
               <Grid
                 focusCell={focusCell}
-                cells={board.cells}
+                cells={board.cells} //returns array of letterObs from mapping over .grid {letter:'', row:0, column:0}
+                gridnums={board.gridnums}
                 handleSetFocus={handleSetFocus}
                 handleClick={handleClick}
                 clickStatus={clicked}

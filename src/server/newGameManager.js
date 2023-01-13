@@ -3,7 +3,7 @@ function getCrosswordData(date) {
   const puzzle = require(`./crosswords/${year}/${month}/${day}.json`);
   return puzzleMap(puzzle);
 }
-
+//board has access to these \/
 function puzzleMap(puzzle) {
   const p = {};
   p.answers = puzzle.answers;
@@ -17,7 +17,22 @@ function puzzleMap(puzzle) {
   p.copyright = puzzle.copyright;
   p.date = puzzle.date;
   p.editor = puzzle.editor;
-  p.cells = generateCells(puzzle.grid, puzzle.size.rows);  // has letterOb (.letter, .row, .column)
+  p.cells = generateCells(puzzle.grid, puzzle.size.rows);
+  /*generateCells outputs:
+[ 
+  { letter: 'H', row: 0, column: 0 },
+  { letter: 'A', row: 0, column: 1 },
+  { letter: 'R', row: 0, column: 2 },
+  { letter: 'E', row: 0, column: 3 },
+  { letter: '.', row: 0, column: 4 },
+  { letter: 'R', row: 0, column: 5 },
+  { letter: 'U', row: 0, column: 6 },
+  { letter: 'I', row: 0, column: 7 },
+  { letter: 'N', row: 0, column: 8 },
+  { letter: 'G', row: 0, column: 9 },
+  { letter: '.', row: 0, column: 10 },
+ ]
+*/
   p.gridnums = puzzle.gridnums;
   p.publisher = puzzle.publisher;
   p.size = puzzle.size;
@@ -42,7 +57,7 @@ function generateClueMap(clues) {
     return accum;
   }, {});
 }
-//p.cells = generateCells(puzzle.grid, puzzle.size.rows);  
+//ln.20
 function generateCells(letters, size) {
   return letters.map((letter, index) => {
     const row = Math.floor(index / size); //on first row index is < size, > on subsequent rows so dividing gets us row value

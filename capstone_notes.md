@@ -217,3 +217,15 @@ But need to nail down the mechanics
 
 - Refocusing, attempting to exercise patience and take a much more methodical approach. Rubber duck the whole thing and
   take extensive notes. Only begin to try and add functionality after I know exactly what is happening and why.
+
+## 1/13/2023
+
+- Last night started going through the components to solidify my understanding and figure out where the gaps and
+  pain points are. Started with <Cell /> since that's where I was trying to get some functionality. Talked my way through it and wrote down the thought process and all relevant details, still working through <Cell />.
+  Today copied over handwritten notes to PC and refined a little bit, later in the session started trying to think
+  more about the task at hand (cell highlight) but still focused mainly on just running through and understanding.
+- Ran into some choppy waters around the .map methods for generating the grid, realized I didn't fully understand what the data looked like as it was coming through props. Spent a good bit of time tugging on those strings.
+- Got a little sidetracked by the SVG text element that holds the 'gridnum', but that also led me down a rabbithole of realizing that I wasn't exactly sure what data I had access to where, and EXACTLY what that data looked like. Definitely need to tighten up on this
+- Once I got my head around the data a -little- better (need more better) I spent some time thinking about how to render the correct gridnums and couldn't get there. May be a little premature on that.
+
+Next step will be to complete notes and then start thinking abt functionality again.
