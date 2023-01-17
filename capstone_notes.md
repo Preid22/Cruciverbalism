@@ -229,3 +229,8 @@ But need to nail down the mechanics
 - Once I got my head around the data a -little- better (need more better) I spent some time thinking about how to render the correct gridnums and couldn't get there. May be a little premature on that.
 
 Next step will be to complete notes and then start thinking abt functionality again.
+
+## 1/16/2023
+
+Continued walking through cell component. Looked at all the data currently avail and collected copies of the relevant objects and arrays 
+so that I am able to see them all in one place. Hoping that by actually seeing them in close proximity to each other I may be able to connect some of the dots on how to get the functionality that I want.

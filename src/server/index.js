@@ -16,16 +16,13 @@ const DIST_DIR = path.join(__dirname, "..", "../dist"); // Seeing lots of refere
 // FIGURE THIS OUT
 const HTML_FILE = path.join(DIST_DIR, "index.html"); // Another path created with path.join, this time joining the DIST_DIR with the index.html file
 
-const { getCrosswordData } = require("./newGameManager"); // A little confused here but I believe we are creating a variable, getCrosswordData,
-// which is assigned to the exported function getCrosswordData from newGameManager.js
-// This gives us access to an object containing the crossword data
+const { getCrosswordData } = require("./newGameManager");
 
 app.use(express.static(DIST_DIR)); //Middleware funcs - FIGURE THESE OUT
 // Inject a function before express handles endpoint requests
 app.use(express.static("public"));
 
 app.get("/creategame", (req, res) => {
-  // app.get specifies a callback func that will be invoked whenever there
   const { date } = req.query; // is a GET request on that path, the func takes req and res as args.
   // ie. the function is a route handler for GET requests to the given URL
 
